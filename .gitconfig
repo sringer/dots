@@ -1,0 +1,38 @@
+[user]
+    name = Stephen Ringer
+	email = stephen.ringer@escapemg.com
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    current = yellow rbold
+    frag = magenta bold
+    old = red
+    new = green
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[push]
+    default = tracking
+[pull]
+    rebase = true
+[diff]
+    algorithm = patience
+[branch]
+    autosetuprebase = always
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
+[help]
+    autocorrect = 30
+[alias]
+    gr = log --graph --full-history --all --color --pretty=format:\"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s\"
+    forceupdatelive = !git fetch origin && git checkout live && git reset --hard origin/live
+    review = !sh -c 'REF=`git rev-parse --symbolic-full-name --abbrev-ref HEAD` && git fetch $1 $2:mergeReview -f && git checkout mergeReview && git rebase $REF && git checkout $REF && git diff HEAD..mergeReview' -
+    approve = merge mergeReview
+    pr = !git review origin refs/pull/$1/head
