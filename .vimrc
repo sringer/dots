@@ -233,8 +233,6 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-" Smart Tab Complete
-" inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,26 +240,6 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction
-
-function! Smart_TabComplete()
-    let line = getline('.')
-
-    let substr = strpart(line, -1, col('.') + 1)
-
-    let substr = matchstr(substr, "[^ \t]*$")
-    if (strlen(substr) == 0)
-        return "\<tab>"
-    endif
-    let has_period = match(substr, '\.') != -1
-    let has_slash = match(substr, '\/') != -1
-    if (!has_period && !has_slash)
-        return "\<C-X>\<C-P>"
-    elseif ( has_slash )
-        return "\<C-X>\<C-F>"
-    else
-        return "\<C-X>\<C-O>"
-    endif
 endfunction
 
 function! VisualSelection(direction) range
@@ -338,6 +316,19 @@ Bundle 'FuzzyFinder'
 " fuzzyfinder
 map ,f :FufFile **/<CR>
 map ,b :FufBuffer **/<CR>
+"FuzzyFinder should ignore all files in .gitignore
+let ignorefile = ".gitignore"
+if filereadable(ignorefile)
+
+  let ignore = '\v\~$'
+  for line in readfile(ignorefile)
+    let line = substitute(line, '\.', '\\.', 'g')
+    let line = substitute(line, '\*', '.*', 'g')
+    let ignore .= '|^' . line
+  endfor
+
+  let g:fuf_coveragefile_exclude = ignore
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""
 " color fuzzyfinder popup                       "
 :hi Pmenu ctermbg=black  "for Background color"
@@ -371,9 +362,21 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " status bar replacer
 Bundle 'bling/vim-airline'
 " highlighting color notations with visual representations in css
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 Bundle 'ap/vim-css-color'
 " color scheme
 Bundle 'altercation/vim-colors-solarized'
+" youcompleteme
+Bundle 'Valloric/YouCompleteMe'
+" mapping jump to definition else declaration
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" tern - JS completion for youcompleteme
+Bundle 'marijnh/tern_for_vim'
+" syntastic
+Bundle 'scrooloose/syntastic'
 " Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
