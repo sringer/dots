@@ -298,6 +298,7 @@ au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.pde set filetype=pde
 au BufRead,BufNewFile *.ejs set filetype=html
 au BufRead,BufNewFile *.less set filetype=less
+au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile Jakefile setf javascript
 
 " Vundle shit

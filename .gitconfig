@@ -36,3 +36,4 @@
     review = !sh -c 'REF=`git rev-parse --symbolic-full-name --abbrev-ref HEAD` && git fetch $1 $2:mergeReview -f && git checkout mergeReview && git rebase $REF && git checkout $REF && git diff HEAD..mergeReview' -
     approve = merge mergeReview
     pr = !git review origin refs/pull/$1/head
+    branches = for-each-ref --sort=committerdate --format='%(committerdate:short) %(refname:short)' refs/heads/ refs/remotes/
