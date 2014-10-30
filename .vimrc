@@ -135,6 +135,8 @@ map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
 " Useful mappings for managing tabs
+map <S-h> :tabp<cr>
+map <S-l> :tabn<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
@@ -195,6 +197,16 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 "autocmd BufWrite *.less :call DeleteTrailingWS()
 "autocmd BufWrite *.css :call DeleteTrailingWS()
 "autocmd BufWrite *.ejs :call DeleteTrailingWS()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CODEFOLD
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -202,8 +214,32 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 " Open vimgrep and put the cursor in the right position
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+" grep all files preferably"
+map <leader><space> :grep! -rni
+"toggle results window
+map <leader>l :call QuickfixToggle()<cr>
+
+let g:quickfix_is_open = 0
+
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+" automatically open, but do not go to (if there are errors) the quickfix / location list window
+" or close it when it has become empty.
+"
+" Note: must allow nesting of autocmds to enable any customizations for quickfix buffers.
+" Note: Normally, :cwindow jumps to the quickfix window if the command opens it (but not if it's already open).
+" However, as part of the autocmd, this doesn't seem to happen.
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " Do :help cope if you are unsure what cope is. It's super useful!
@@ -240,6 +276,26 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
+endfunction
+
+function! Smart_TabComplete()
+    let line = getline('.')
+
+    let substr = strpart(line, -1, col('.') + 1)
+
+    let substr = matchstr(substr, "[^ \t]*$")
+    if (strlen(substr) == 0)
+        return "\<tab>"
+    endif
+    let has_period = match(substr, '\.') != -1
+    let has_slash = match(substr, '\/') != -1
+    if (!has_period && !has_slash)
+        return "\<C-X>\<C-P>"
+    elseif ( has_slash )
+        return "\<C-X>\<C-F>"
+    else
+        return "\<C-X>\<C-O>
+    endif
 endfunction
 
 function! VisualSelection(direction) range
@@ -353,7 +409,7 @@ Bundle 'lunaru/vim-less'
 " nerd tree project source tree
 Bundle 'scrooloose/nerdtree'
 " map nerd tree to ,n
-nmap <leader>n :NERDTreeToggle<cr>
+nmap <leader>nt :NERDTreeToggle<cr>
 " auto open NERDTree when vim starts
 " autocmd vimenter * NERDTree
 " auto open NERDTree when vim starts with no file
@@ -378,6 +434,7 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 Bundle 'marijnh/tern_for_vim'
 " syntastic
 Bundle 'scrooloose/syntastic'
+nnoremap <leader>sc :SyntasticCheck<CR>
 " Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
