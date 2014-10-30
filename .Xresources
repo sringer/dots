@@ -1,0 +1,144 @@
+! Solarized color scheme for the X Window System
+!
+! http://ethanschoonover.com/solarized
+
+
+! Common
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+
+! Dark
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+
+! Light
+
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background:            S_base03
+
+! Global Colors
+!*background:              S_base03
+!*foreground:              S_base0
+!*fading:                  40
+!*fadeColor:               S_base03
+!*cursorColor:             S_base1
+!*pointerColorBackground:  S_base01
+!*pointerColorForeground:  S_base1
+!
+!*color0:                  S_base02
+!*color1:                  S_red
+!*color2:                  S_green
+!*color3:                  S_yellow
+!*color4:                  S_blue
+!*color5:                  S_magenta
+!*color6:                  S_cyan
+!*color7:                  S_base2
+!*color9:                  S_orange
+!*color8:                  S_base03
+!*color10:                 S_base01
+!*color11:                 S_base00
+!*color12:                 S_base0
+!*color13:                 S_violet
+!*color14:                 S_base1
+!*color15:                 S_base3
+*foreground: #ffffff
+*background: #252525
+*color0: #073642
+*color1: #dc322f
+*color2: #6fb126
+*color3: #b58900
+*color4: #4682d0
+*color5: #d33682
+*color6: #2aa198
+*color7: #ded8c5
+*color8: #002b36
+*color9: #cb4b16
+*color10: #b6e354
+*color11: #657b83
+*color12: #729fcf
+*color13: #6c71c4
+*color14: #93a1a1
+*color15: #fdf6e3
+
+! xscreensaver
+xscreensaver.Dialog.foreground: #ffffff
+xscreensaver.Dialog.background: #252525
+xscreensaver.Dialog.Button.foreground: #ffffff
+xscreensaver.Dialog.Button.background: #252525
+xscreensaver.Dialog.text.foreground: #ffffff
+xscreensaver.Dialog.text.background: #252525
+xscreensaver.Dialog.thermometer.foreground: #a6a6a6
+xscreensaver.Dialog.thermometer.background: #252525
+xscreensaver.Dialog.borderWidth: 0
+xscreensaver.Dialog.internalBorderWidth: 0
+xscreensaver.Dialog.shadowThickness: 0
+xscreensaver.Dialog.topShadowColor: #252525
+xscreensaver.Dialog.bottomShadowColor: #252525
+xscreensaver.Dialog.logo.width: 16 
+xscreensaver.Dialog.logo.height: 16
+
+
+Xft.dpi:        96
+Xft.antialias:	true
+Xft.hinting:    true
+Xft.hinstyle:   hintslight
+!Xft.lcdfilter:  lcdlight
+
+!URxvt*xftAntialias: true
+! URxvt*tintColor: gray30
+URxvt.internalBorder: 0
+URxvt.jumpScroll: true
+URxvt.perl-ext-common: default,matcher,url-select,keyboard-select,searchable-scrollback
+URxvt.pointerBlank: true
+URxvt.saveLines: 4000
+URxvt.secondaryScroll: true
+URxvt.scrollBar: false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollWithBuffer: true
+URxvt*urlLauncher: /usr/bin/chromium
+URxvt.url-select.launcher: chromium
+URxvt.url-select.underline: tru
+URxvt.keysym.M-u:	perl:url-select:select_next
+URxvt.keysym.M-Escape:	perl:keyboard-select:activate
+URxvt.keysym.M-s:	perl:keyboard-select:search
+URxvt*font:                          xft:inconsolata:size=10:antialias=true
+URxvt*depth:                    32
+URxvt*boldFont:                      xft:inconsolata:size=10:antialias=true
+!URxvt*intensityStyles:                true
+!URxvt*letterSpace:                   -1 
+!URxvt*lineSpace:                   -1 
+URxvt*borderless: 1
+URxvt*termName: rxvt-unicode
+URxvt*buffered: true
+XTerm*font:                          xft:inconsolata:size=10:antialias=true
+XTerm*boldFont:                      xft:inconsolata:size=10:antialias=true
+!XTerm*intensityStyles:                true
+!XTerm*letterSpace:                   -1 
+!XTerm*lineSpace:                   -1 
