@@ -382,6 +382,10 @@ case "$(uname -o)" in
 	;;
 esac
 
+# envoy for ssh keyring
+envoy -t ssh-agent
+source <(envoy -p)
+
 # Path alterations
 # # android stuffs
 # # # adb
