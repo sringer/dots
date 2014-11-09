@@ -300,7 +300,9 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    --awful.key({ modkey }, "p", function() menubar.show() end)
+    -- run google music in app mode
+    awful.key({ modkey }, "p", function() awful.util.spawn("google-chrome-stable \"--app=https://music.google.com\"") end)
 )
 
 clientkeys = awful.util.table.join(
