@@ -21,7 +21,7 @@ if not awful.util.file_readable(themes .. themename .. "/theme.lua") then
 end
 themedir      = themes .. themename
 
-wallpaper1    = themedir .. "/blutree.jpg"
+wallpaper1    = themedir .. "/stag.jpg"
 wallpaper2    = themedir .. "/background.png"
 wallpaper3    = sharedthemes .. "/zenburn/zenburn-background.png"
 wallpaper4    = sharedthemes .. "/default/background.png"
@@ -44,7 +44,7 @@ if awful.util.file_readable(config .. "/vain/init.lua") then
 end
 --}}}
 
-theme.font          = "Source Code Pro 9"
+theme.font          = "Source Sans Pro 10"
 
 theme.bg_normal     = "#252525"
 theme.bg_focus      = "#252525"

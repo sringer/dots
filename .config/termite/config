@@ -8,8 +8,8 @@ mouse_autohide = false
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Source Code Pro 9
-#font = Inconsolata 10
+#font = Source Code Pro 9
+font = Inconsolata 10
 scrollback_lines = 1000
 icon_name = terminal
 transparency = 1
@@ -18,8 +18,8 @@ cursor_shape = block
 browser = google-chrome-stable
 
 [hints]
-font = Source Code Pro Regular 9
-#font = Inconsolata 10
+#font = Source Code Pro Regular 9
+font = Inconsolata 10
 background = #001B2E
 padding = 1
 border_width = 2.5

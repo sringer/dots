@@ -13,7 +13,7 @@ local menubar = require("menubar")
 -- Launchbar library
 local launchbar = require("launchbar")
 -- Battery thing
-require("bat")
+-- require("bat")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -41,7 +41,7 @@ end
 -- }}}
 
 -- {{{ Compositor thingie
-awful.util.spawn_with_shell("compton &")
+--awful.util.spawn_with_shell("compton &")
 -- }}}
 
 -- {{{ Variable definitions
@@ -123,20 +123,20 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(" %a %b %d, %I:%M %p ")
 -- Battery Widget
-batwidget = wibox.widget.textbox( "" )
-battimer = timer({ timeout = 5 })
-battimer:connect_signal("timeout",
-    function()
-        batlevel = batteryInfo()
-        if (batlevel == nil) then
-            batwidget:set_markup('<span color="blue".bat:unk</span>    ')
-        elseif (tonumber(batlevel) < 10) then
-            batwidget:set_markup('<span color="red">bat:'..batlevel..'</span>    ')
-        else
-            batwidget:set_markup('<span color="white">bat:'..batlevel..'</span>    ')
-        end
-    end)
-battimer:start()
+-- batwidget = wibox.widget.textbox( "" )
+-- battimer = timer({ timeout = 5 })
+-- battimer:connect_signal("timeout",
+--     function()
+--         batlevel = batteryInfo()
+--         if (batlevel == nil) then
+--             batwidget:set_markup('<span color="blue".bat:unk</span>    ')
+--         elseif (tonumber(batlevel) < 10) then
+--             batwidget:set_markup('<span color="red">bat:'..batlevel..'</span>    ')
+--         else
+--             batwidget:set_markup('<span color="white">bat:'..batlevel..'</span>    ')
+--         end
+--     end)
+-- battimer:start()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -217,7 +217,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(batwidget)
+    --right_layout:add(batwidget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -323,8 +323,8 @@ clientkeys = awful.util.table.join(
         end),
     awful.key({ modkey,           }, "l",
         function (c)
-            -- Locks screen using xscreensaver
-            awful.util.spawn("xscreensaver-command --lock")
+            -- Locks screen using slimlock
+            awful.util.spawn("slimlock")
         end)
 )
 
