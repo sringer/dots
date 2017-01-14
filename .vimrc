@@ -356,6 +356,9 @@ au BufRead,BufNewFile *.ejs set filetype=html
 au BufRead,BufNewFile *.less set filetype=less
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile Jakefile setf javascript
+ 
+" set real tabs for go, but show them as 4 spaces and whatnot
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 
 " Vundle shit
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -410,6 +413,14 @@ Bundle 'lunaru/vim-less'
 Bundle 'scrooloose/nerdtree'
 " map nerd tree to ,n
 nmap <leader>nt :NERDTreeToggle<cr>
+" ack plugin (but gonna remap to Ag)
+Bundle 'mileszs/ack.vim'
+" now remap to Ag
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
 " auto open NERDTree when vim starts
 " autocmd vimenter * NERDTree
 " auto open NERDTree when vim starts with no file
@@ -430,8 +441,6 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'Valloric/YouCompleteMe'
 " mapping jump to definition else declaration
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" tern - JS completion for youcompleteme
-Bundle 'marijnh/tern_for_vim'
 " syntastic
 Bundle 'scrooloose/syntastic'
 nnoremap <leader>sc :SyntasticCheck<CR>

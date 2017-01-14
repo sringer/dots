@@ -420,15 +420,14 @@ alias batteryStatus='acpi -b'
 alias maxKbdLight='asus-kbd-backlight max'
 # keyboard backlight off
 alias offKbdLight='asus-kbd-backlight off'
-# launch lotro
-#alias playLotro='WINEDEBUG=-all primusrun wine "/home/sringer/.wine/drive_c/Program Files (x86)/Turbine/The Lord of the Rings Online/TurbineLauncher.exe"'
 # launch openvpn
-alias workVPN='sudo openvpn --config ~/vpnconnections/client.ovpn'
+#alias workVPN='sudo openvpn --config ~/vpnconnections/client.ovpn'
 # launch work ssh
-alias doWork='ssh sringer@172.16.202.113'
-# ps3 media server
-alias ps3serverStart='systemctl start pms@sringer'
-alias ps3serverStop='systemctl start pms@sringer'
+alias doWork='ssh -C root@104.236.210.94'
+# shield controller
+alias shieldcontroller='sudo xboxdrv --evdev "/dev/input/event21" --evdev-keymap "KEY_HOMEPAGE=guide,BTN_THUMBR=tr,BTN_WEST=y,BTN_TL=lb,BTN_TR=rb,BTN_START=start,BTN_A=a,BTN_THUMBL=tl,BTN_NORTH=x,KEY_BACK=back,BTN_B=b" --evdev-absmap "ABS_RZ=y2,ABS_BRAKE=lt,ABS_Y=y1,ABS_GAS=rt,ABS_Z=x2,ABS_X=x1,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y" --axismap "-y2=y2,-y1=y1" --mimic-xpad'
+# nuke docker
+alias nukedocker='docker rm -f $(docker ps -a -q) && docker rmi -f $(docker images -q)'
 #screenshot
 scrot='scrot ~/images/Screenshot$(date +%Y-%m-%d-%H-%M-%S).png'
 
@@ -474,3 +473,8 @@ if [ -f ~/.alert ]; then echo '>>> Check ~/.alert'; fi
 
 # add user bin to path
 export PATH=~/bin:$PATH
+# ssh socket
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+# add npm global modules to path
+export PATH="$HOME/.npm-global/bin:$PATH"
+export npm_config_prefix=~/.npm-global
