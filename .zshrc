@@ -1,6 +1,4 @@
 # .zshrc
-# Author: Piotr Karbowski <piotr.karbowski@gmail.com>
-# License: beerware.
 
 # Basic zsh config.
 umask 077
@@ -428,8 +426,15 @@ alias doWork='ssh -C root@104.236.210.94'
 alias shieldcontroller='sudo xboxdrv --evdev "/dev/input/event21" --evdev-keymap "KEY_HOMEPAGE=guide,BTN_THUMBR=tr,BTN_WEST=y,BTN_TL=lb,BTN_TR=rb,BTN_START=start,BTN_A=a,BTN_THUMBL=tl,BTN_NORTH=x,KEY_BACK=back,BTN_B=b" --evdev-absmap "ABS_RZ=y2,ABS_BRAKE=lt,ABS_Y=y1,ABS_GAS=rt,ABS_Z=x2,ABS_X=x1,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y" --axismap "-y2=y2,-y1=y1" --mimic-xpad'
 # nuke docker
 alias nukedocker='docker rm -f $(docker ps -a -q) && docker rmi -f $(docker images -q)'
+# remove orphan packages
+alias removeOrphanPackages='sudo pacman -Rns $(pacman -Qtdq)'
 #screenshot
-scrot='scrot ~/images/Screenshot$(date +%Y-%m-%d-%H-%M-%S).png'
+#scrot='scrot ~/images/Screenshot$(date +%Y-%m-%d-%H-%M-%S).png'
+alias fixExternalDisplayScale='xrandr --output DP-1 --scale 1.2x1.2'
+# run on razercore via primus
+alias razerrun='PRIMUS_SYNC=1 vblank_mode=0 primusrun'
+# fzf nvim mode
+alias fzfnvim='fzf --bind "enter:execute(nvim {})"'
 
 # Keys.
 case $TERM in
@@ -478,3 +483,13 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 # add npm global modules to path
 export PATH="$HOME/.npm-global/bin:$PATH"
 export npm_config_prefix=~/.npm-global
+################
+# pyenv stuff
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+################
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

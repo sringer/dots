@@ -105,7 +105,7 @@ xscreensaver.Dialog.logo.width: 16
 xscreensaver.Dialog.logo.height: 16
 
 
-Xft.dpi:        96
+Xft.dpi:        120
 Xft.antialias:	true
 Xft.hinting:    true
 Xft.hinstyle:   hintslight
@@ -128,17 +128,17 @@ URxvt.url-select.underline: tru
 URxvt.keysym.M-u:	perl:url-select:select_next
 URxvt.keysym.M-Escape:	perl:keyboard-select:activate
 URxvt.keysym.M-s:	perl:keyboard-select:search
-URxvt*font:                          xft:inconsolata:size=10:antialias=true
+URxvt*font:                          xft:inconsolata:size=18:antialias=true
 URxvt*depth:                    32
-URxvt*boldFont:                      xft:inconsolata:size=10:antialias=true
+URxvt*boldFont:                      xft:inconsolata:size=18:antialias=true
 !URxvt*intensityStyles:                true
 !URxvt*letterSpace:                   -1 
 !URxvt*lineSpace:                   -1 
 URxvt*borderless: 1
 URxvt*termName: rxvt-unicode
 URxvt*buffered: true
-XTerm*font:                          xft:inconsolata:size=10:antialias=true
-XTerm*boldFont:                      xft:inconsolata:size=10:antialias=true
+XTerm*font:                          xft:inconsolata:size=18:antialias=true
+XTerm*boldFont:                      xft:inconsolata:size=18:antialias=true
 !XTerm*intensityStyles:                true
 !XTerm*letterSpace:                   -1 
 !XTerm*lineSpace:                   -1 

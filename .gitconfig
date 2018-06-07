@@ -35,3 +35,5 @@
     approve = merge mergeReview
     pr = !git review origin refs/pull/$1/head
     branches = for-each-ref --sort=committerdate --format='%(committerdate:short) %(refname:short)' refs/heads/ refs/remotes/
+[core]
+	excludesfile = /home/sringer/.gitingore_global
