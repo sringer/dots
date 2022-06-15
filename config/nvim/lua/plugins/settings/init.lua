@@ -1,0 +1,6 @@
+require "plugins.settings.cmp"
+require "plugins.settings.telescope"
+require "plugins.settings.treesitter"
+require "plugins.settings.autopairs"
+require "plugins.settings.nvim-tree"
+require "plugins.settings.bufferline"
